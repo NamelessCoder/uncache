@@ -10,7 +10,7 @@ Prevents caching.
 
 ### How does it work?
 
-Caches everything to /dev/null for retrieval later. Just kidding about the last part. There's no retrieving nothing, no more.
+You know what a cache does? This doesn't do that.
 
 ### Which cache types does it prevent?
 
