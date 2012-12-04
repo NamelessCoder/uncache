@@ -1,4 +1,30 @@
-uncache
-=======
+## TYPO3 extension Uncache: Caches? What do you mean, caches...?
 
-TYPO3 extension Uncache: Destroy all caching in TYPO3 6.0
+### What is it?
+
+A cache preventer.
+
+### What does it do?
+
+Prevents caching.
+
+### How does it work?
+
+Caches everything to /dev/null for retrieval later. Just kidding about the last part. There's no retrieving nothing, no more.
+
+### Which cache types does it prevent?
+
+Logic flowchart:
+
+1. Is it a cache?
+2. Then it is prevented!
+
+### Can it still allow some caches to work?
+
+See the flowchart above.
+
+### How to use
+
+Install; then forget that you ever had a _clear all caches_ button which was __always__ eight keystrokes and two mouse clicks away.
+
+## Have fun, enjoy!
