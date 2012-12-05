@@ -14,7 +14,7 @@ class VariableFrontend extends \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend {
 	 * @api
 	 */
 	public function set($entryIdentifier, $variable, array $tags = array(), $lifetime = NULL) {
-		return parent::set($entryIdentifier, $variable, $tags, 0);
+		return parent::set($entryIdentifier, $variable, $tags, .1);
 	}
 
 }
