@@ -17,20 +17,4 @@ class StringFrontend extends \TYPO3\CMS\Core\Cache\Frontend\StringFrontend {
 		return parent::set($entryIdentifier, $variable, $tags, 0);
 	}
 
-	/**
-	 * @param string $entryIdentifier
-	 * @return boolean
-	 */
-	public function has($entryIdentifier) {
-		return parent::has($entryIdentifier);
-	}
-
-	/**
-	 * @param string $entryIdentifier
-	 * @return mixed
-	 */
-	public function get($entryIdentifier) {
-		return parent::get($entryIdentifier);
-	}
-
 }
