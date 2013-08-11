@@ -3,7 +3,7 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "uncache".
  *
- * Auto generated 05-12-2012 02:29
+ * Auto generated 11-08-2013 22:33
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -15,8 +15,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'You know caches. You hate them while developing - so this extension prevents them all from working.',
 	'category' => 'misc',
 	'shy' => 0,
-	'version' => '1.0.0',
-	'dependencies' => 'core',
+	'version' => '1.0.1',
+	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
 	'loadOrder' => '',
