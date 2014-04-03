@@ -11,8 +11,8 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Uncache: Caches? What do you mean, caches...?',
-	'description' => 'You know caches. You hate them while developing - so this extension prevents them all from working.',
+	'title' => 'Uncache: Caching Framework Crippler',
+	'description' => 'You know caches. You hate them while developing - when installed, this extension prevents them all from working. NOT FOR PRODUCTION USE!',
 	'category' => 'misc',
 	'shy' => 0,
 	'version' => '1.0.1',
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearcacheonload' => 1,
 	'lockType' => '',
-	'author' => 'Claus Due',
+	'author' => 'FluidTYPO3 Team',
 	'author_email' => 'claus@namelesscoder.net',
 	'author_company' => '',
 	'CGLcompliance' => '',
@@ -45,5 +45,3 @@ $EM_CONF[$_EXTKEY] = array(
 	'suggests' => array(
 	),
 );
-
-?>
