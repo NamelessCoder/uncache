@@ -24,21 +24,6 @@ namespace FluidTYPO3\Uncache\Cache\Backend;
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-class TransientMemoryBackend extends \TYPO3\CMS\Core\Cache\Backend\TransientMemoryBackend implements \TYPO3\CMS\Core\Cache\Backend\PhpCapableBackendInterface {
+class TransientMemoryBackend extends \TYPO3\CMS\Core\Cache\Backend\TransientMemoryBackend {
 
-	/**
-	 * @var array Holds php cache entries
-	 */
-	protected $phpEntries = array();
-
-	/**
-	 * Loads PHP code from the cache and require_onces it right away.
-	 *
-	 * @param string $entryIdentifier An identifier which describes the cache entry to load
-	 * @return mixed Potential return value from the include operation
-	 * @api
-	 */
-	public function requireOnce($entryIdentifier) {
-		return isset($this->phpEntries[$entryIdentifier]) ? require_once($this->phpEntries[$entryIdentifier]) : FALSE;
-	}
 }

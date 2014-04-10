@@ -71,11 +71,7 @@ class CacheManager extends \TYPO3\CMS\Core\Cache\CacheManager implements Singlet
 			$backend = 'FluidTYPO3\\Uncache\\Cache\\Backend\\TransientMemoryBackend';
 		}
 
-		if (isset($this->cacheConfigurations[$identifier]['options'])) {
-			$backendOptions = $this->cacheConfigurations[$identifier]['options'];
-		} else {
-			$backendOptions = $this->defaultCacheConfiguration['options'];
-		}
+		$backendOptions = $this->defaultCacheConfiguration['options'];
 
 		// Add the cache identifier to the groups that it should be attached to, or use the default ones.
 		if (isset($this->cacheConfigurations[$identifier]['groups']) && is_array($this->cacheConfigurations[$identifier]['groups'])) {
