@@ -25,7 +25,10 @@ namespace FluidTYPO3\Uncache\Override\Core\Cache;
  * ************************************************************* */
 
 use TYPO3\CMS\Core\Cache\CacheFactory;
+use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Reflection\ReflectionService;
 
 /**
  * Class CacheManager
@@ -34,16 +37,8 @@ use TYPO3\CMS\Core\SingletonInterface;
 class CacheManager extends \TYPO3\CMS\Core\Cache\CacheManager implements SingletonInterface {
 
 	/**
-	 * CONSTRUCTOR
-	 */
-	public function __construct() {
-		$this->cacheFactory = new CacheFactory('production', $this);
-		$this->flushCaches();
-	}
-
-	/**
 	 * @param string $identifier
-	 * @return \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
+	 * @return FrontendInterface
 	 */
 	public function getCache($identifier) {
 		if (FALSE === $this->hasCache($identifier)) {
@@ -59,22 +54,42 @@ class CacheManager extends \TYPO3\CMS\Core\Cache\CacheManager implements Singlet
 	 * @return void
 	 */
 	protected function createCache($identifier) {
-		if (TRUE === isset($this->cacheConfigurations[$identifier]['frontend'])) {
+		if (isset($this->cacheConfigurations[$identifier]['frontend'])) {
 			$frontend = $this->cacheConfigurations[$identifier]['frontend'];
 		} else {
 			$frontend = $this->defaultCacheConfiguration['frontend'];
 		}
-		if (TRUE === isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][$frontend]['className'])) {
-			$frontend = $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][$frontend]['className'];
-			$backend = 'TYPO3\\CMS\\Core\\Cache\\Backend\\NullBackend';
-		} elseif (TRUE === isset($this->cacheConfigurations[$identifier]['backend'])) {
-			$backend = $this->cacheConfigurations[$identifier]['backend'];
-		} else {
-			$backend = $this->defaultCacheConfiguration['backend'];
+
+		if (isset($this->cacheConfigurations[$identifier]['backend'])
+			&& isset($this->cacheConfigurations[$identifier]['backend']['frontend'])
+		) {
+			/** @var ReflectionService $reflectionService */
+			$reflectionService = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Reflection\ReflectionService');
+			$phpBackendRequired = $reflectionService->hasMethod($this->cacheConfigurations[$identifier]['frontend'], 'requireOnce');
 		}
-		$backendOptions = array();
+
+		if ($phpBackendRequired) {
+			$backend = 'TYPO3\CMS\Core\Cache\Backend\NullBackend';
+		} else {
+			$backend = 'FluidTYPO3\Uncache\Override\Core\Cache\Backend\TransientMemoryBackend';
+		}
+
+		$backendOptions = $this->defaultCacheConfiguration['options'];
+
+		// Add the cache identifier to the groups that it should be attached to, or use the default ones.
+		if (isset($this->cacheConfigurations[$identifier]['groups']) && is_array($this->cacheConfigurations[$identifier]['groups'])) {
+			$assignedGroups = $this->cacheConfigurations[$identifier]['groups'];
+		} else {
+			$assignedGroups = $this->defaultCacheConfiguration['groups'];
+		}
+		foreach ($assignedGroups as $groupIdentifier) {
+			if (!isset($this->cacheGroups[$groupIdentifier])) {
+				$this->cacheGroups[$groupIdentifier] = array();
+			}
+			$this->cacheGroups[$groupIdentifier][] = $identifier;
+		}
+
 		$this->cacheFactory->create($identifier, $frontend, $backend, $backendOptions);
-		$this->caches[$identifier]->getBackend()->setDefaultLifetime(1);
 	}
 
 }
