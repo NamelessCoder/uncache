@@ -39,4 +39,12 @@ class TransientMemoryBackend extends \TYPO3\CMS\Core\Cache\Backend\TransientMemo
 		return NULL;
 	}
 
+	/**
+	 * @param string $entryIdentifier
+	 * @return boolean
+	 */
+	public function has($entryIdentifier) {
+		return FALSE;
+	}
+
 }
