@@ -14,7 +14,7 @@ You know what a cache does? This doesn't do that.
 
 ### Where does it work?
 
-On TYPO3 6.0 only. With my sincere apologies.
+On TYPO3 6.0.0 to 6.2.99.
 
 ### Which cache types does it prevent?
 
