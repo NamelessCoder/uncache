@@ -1,3 +1,6 @@
+# Discontinued in favor of TYPO3 development context
+Note: NULL cache backends to disable everything.
+
 ## TYPO3 extension Uncache: Caches? What do you mean, caches...?
 
 ### What is it?
