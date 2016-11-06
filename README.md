@@ -2,7 +2,7 @@
 
 To install:
 
-`composer require namelesscoder/uncache`
+`composer require --dev namelesscoder/uncache`
 
 ### What is it?
 
