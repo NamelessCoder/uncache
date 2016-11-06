@@ -1,7 +1,8 @@
-# Discontinued in favor of TYPO3 development context
-Note: NULL cache backends to disable everything.
-
 ## TYPO3 extension Uncache: Caches? What do you mean, caches...?
+
+To install:
+
+`composer require namelesscoder/uncache`
 
 ### What is it?
 
@@ -17,7 +18,7 @@ You know what a cache does? This doesn't do that.
 
 ### Where does it work?
 
-On TYPO3 6.0.0 to 6.2.99.
+On TYPO3 7.6.0 and v8 series and most likely also up-coming v9.
 
 ### Which cache types does it prevent?
 
