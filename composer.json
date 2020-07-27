@@ -1,5 +1,8 @@
 {
     "name": "namelesscoder/uncache",
     "description": "TYPO3 Cache Crippler",
-    "type": "typo3-cms-extension"
+    "type": "typo3-cms-extension",
+    "require": {
+        "typo3/cms-core": "^7.6 || ^8.7 || ^9.4"
+    }
 }
